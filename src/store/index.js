@@ -1,20 +1,25 @@
-import { createStore } from 'redux'
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const reducerFunction = (state = {counter: 0}, action) => {
-
-  // Limitations for actions:
-  // synchronous function
-  // shouldn't modify the original state
-  switch (action.type) {
-    case 'INC': return {counter: state.counter + 1}
-    case 'DEC': return {counter: state.counter - 1}
-    case 'TEN': return {counter: state.counter + 10}
-    // I always need to return state
-    default: return state
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: {counter: 0},
+  reducers: {
+    increment(state, action) {
+      state.counter++
+    },
+    decrease(state, action) {
+      state.counter--
+    },
+    reset(state, action) {
+      state.counter = 0
+    }
   }
-}
+})
 
-const store = createStore(reducerFunction)
+export const actions = counterSlice.actions
 
+const store = configureStore({
+  reducer: counterSlice.reducer
+})
 
-export default store;
+export default store
