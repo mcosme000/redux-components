@@ -3,7 +3,6 @@ import Todolist from "./pages/todolist";
 
 function App() {
 
-
   return (
     <div>
       <h1>Redux components</h1>
