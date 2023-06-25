@@ -1,25 +1,13 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import counterSlice from "./counter_slice";
+import listSlice from "./task_slice";
 
-const counterSlice = createSlice({
-  name: 'counter',
-  initialState: {counter: 0},
-  reducers: {
-    increment(state) {
-      state.counter++
-    },
-    decrease(state) {
-      state.counter--
-    },
-    reset(state) {
-      state.counter = 0
-    }
-  }
-})
-
-export const {increment, decrease, reset} = counterSlice.actions
 
 const store = configureStore({
-  reducer: counterSlice.reducer
+  reducer: {
+    counter: counterSlice.reducer,
+    task: listSlice.reducer
+  }
 })
 
 export default store
